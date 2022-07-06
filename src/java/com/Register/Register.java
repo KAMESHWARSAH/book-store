@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -44,8 +45,18 @@ public class Register extends HttpServlet {
             Statement stm=con.createStatement();
             String s2="insert into admin (name, password) values('"+name+"', '"+pass+"')";
             int i=stm.executeUpdate(s2);
+            HttpSession session=request.getSession();
+            
             if(i==1){
                 pw.println("Data inserted");
+                session.setAttribute("Successfull", "Success full Registeres!");
+                response.sendRedirect("register.jsp");
+                
+            }
+            else{
+                 pw.println("Data Not  inserted");
+                session.setAttribute("notresgitered", "Not Success full Registeres!");
+                response.sendRedirect("register.jsp");
             }
         }catch(Exception ee){
             System.out.println(ee);

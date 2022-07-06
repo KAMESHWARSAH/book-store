@@ -26,6 +26,13 @@
         <div>
             <h1 class="text-center p-4">Welcome to Register Page</h1> 
         </div>
+        <%
+            String succesMeg =(String) session.getAttribute("Successfull");
+            String errorMeg =(String) session.getAttribute("notresgitered");
+            
+            %>
+            <p class="text-center"><%=succesMeg %></p>
+            <p class="text-center"><%=errorMeg %></p>
         <div class="container card p-4">
             <form action="Register" method="post">
                 <div class="form-group">
